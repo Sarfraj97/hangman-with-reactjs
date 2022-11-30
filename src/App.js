@@ -35,6 +35,7 @@ function App() {
           if (selectedWordArray.includes(letter)) {          
             if (!correctAttempt.includes(letter)) {
               setCorrectAttempt([...correctAttempt, letter])
+              
             }
             else {
               notificationPopup( setShowNotification )
@@ -48,9 +49,13 @@ function App() {
               notificationPopup( setShowNotification )
             }
           }
+          
+          if (!checkWin(correctAttempt, wrongAttempt, selectedWord).length === 0){ 
+            console.log("hogya");
+            setPlayable(false);
+          }
         }
-        console.log(checkWin(correctAttempt, wrongAttempt, selectedWord));
-        if(checkWin(correctAttempt, wrongAttempt, selectedWord) === 'win'){console.log('WONNNN')}
+
         const handleKeyDown = event => {
           const { key, keyCode } = event;
           if(playable && keyCode >= 65 && keyCode <= 90){
@@ -58,15 +63,15 @@ function App() {
             // console.log(checkWin(correctAttempt, wrongAttempt, selectedWord), selectedWord)
             UserAttempt(letter);
           }
-    }
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.addEventListener('keydown', handleKeyDown);
+        }
+    document.getElementById("user-input").addEventListener('keydown', handleKeyDown);
+    return () => document.getElementById("user-input").addEventListener('keydown', handleKeyDown);
   }, [wrongAttempt, correctAttempt, playable, selectedWordArray])
 
   return (
-    <div>      
-      <Header/>
-      <input type="text"></input>
+    <div className="main">      
+      <Header wrongAttempt={wrongAttempt}/>
+      <input id="user-input" type="text" className="user-input"></input>
       <PopUp correctAttempt={correctAttempt} wrongAttempt={wrongAttempt} selectedWord={selectedWord} setPlayable={setPlayable}/>
       <Game correctAttempt={correctAttempt} selectedWordArray={selectedWordArray}/>
       <WrongAttempt wrongAttempts={wrongAttempt} />

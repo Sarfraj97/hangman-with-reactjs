@@ -41,7 +41,7 @@
   border-bottom: 1px solid black;
   width: 2%;
   display: inline-block;
-  margin-right: 10px;
+  margin: 10px;
 }
 
 .blank {
@@ -56,6 +56,7 @@
   position: absolute;
   bottom: -50px;
   transition: transform 0.3s ease-in-out;
+  display: none;
 }
 
 .notification-container p {
@@ -64,4 +65,26 @@
 
 .notification-container.show {
   transform: translateY(-50px);
+  display: block;
 }
+
+.user-input {
+  outline: 0;
+  border-color: aquamarine;
+  border-width: 0 0 2px;
+  margin: 10px 60px 50px;
+}
+
+.main {
+      /* text-align: center; */
+      display: gap;
+      display: flex;
+      flex-direction: column;
+      /* height: 50%; */
+      /* flex-wrap: wrap; */
+      margin: auto;
+      width: 50%;
+      text-align: center;
+      line-height: 20px;
+}
+
